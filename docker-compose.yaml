@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  server:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Poorva100934359
+      - POSTGRES_DB=labonedb
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: labonedb
+      POSTGRES_PASSWORD: Poorva100934359
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db-data:
