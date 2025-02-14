@@ -8,4 +8,4 @@ steps:
     args: ['push', 'us-central1-docker.pkg.dev/rosy-ratio-438620-f8/poorva-100934359/app:$COMMIT_SHA']
 
 options:
-  logging: REGIONAL_USER_OWNED_BUCKET
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
